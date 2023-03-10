@@ -1,0 +1,8130 @@
+[
+    {
+        "id": "bd230b2d7e916b48",
+        "type": "tab",
+        "label": "Test_Daltonismo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f61aea2542437351",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload.description.summary",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "daltonismo",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "f58cde7f7a5a83cc"
+            ]
+        ]
+    },
+    {
+        "id": "409d8d92578e27c6",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "12",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1180,
+        "y": 280,
+        "wires": [
+            [
+                "bb8fd9f4a45245ed"
+            ]
+        ]
+    },
+    {
+        "id": "d78de960e6c7f41f",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1070,
+        "y": 720,
+        "wires": [
+            [
+                "4cb63e07e87380bd"
+            ]
+        ]
+    },
+    {
+        "id": "f2f4b9948ba97084",
+        "type": "alexa-remote-event",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "event": "ws-device-activity",
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "f61aea2542437351",
+                "4d7a9a22c5533abc",
+                "204ca11f3b8a31b6",
+                "960526cf9514465d"
+            ]
+        ]
+    },
+    {
+        "id": "4cb63e07e87380bd",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1280,
+        "y": 720,
+        "wires": [
+            [
+                "af72c7903e392759"
+            ]
+        ]
+    },
+    {
+        "id": "af72c7903e392759",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 7",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 720,
+        "wires": [
+            [
+                "5df062b820cc6bd8"
+            ]
+        ]
+    },
+    {
+        "id": "5df062b820cc6bd8",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1630,
+        "y": 720,
+        "wires": [
+            [
+                "4d16cdda8a7a419d"
+            ]
+        ]
+    },
+    {
+        "id": "c5f8a7fa969d4891",
+        "type": "catch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "scope": [
+            "922209ba57afafed"
+        ],
+        "uncaught": false,
+        "x": 1130,
+        "y": 460,
+        "wires": [
+            [
+                "234b79dd6ce23696"
+            ]
+        ]
+    },
+    {
+        "id": "f58cde7f7a5a83cc",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 11",
+        "func": "msg.payload = msg.payload.name\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "15cecd040ddbd878"
+            ]
+        ]
+    },
+    {
+        "id": "234b79dd6ce23696",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "prima iterazione",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1280,
+        "y": 460,
+        "wires": [
+            [
+                "a67e38fc14c794f1"
+            ]
+        ]
+    },
+    {
+        "id": "a67e38fc14c794f1",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 26",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 460,
+        "wires": [
+            [
+                "5182ef9048d90c77"
+            ]
+        ]
+    },
+    {
+        "id": "8a285b488c0fd3fe",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3540,
+        "y": 720,
+        "wires": [
+            [
+                "a03487d30eec6698"
+            ]
+        ]
+    },
+    {
+        "id": "6e8e0f0ae8dd6ece",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3340,
+        "y": 720,
+        "wires": [
+            [
+                "8a285b488c0fd3fe"
+            ]
+        ]
+    },
+    {
+        "id": "10776ef351e0d9bf",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3130,
+        "y": 720,
+        "wires": [
+            [
+                "6e8e0f0ae8dd6ece"
+            ]
+        ]
+    },
+    {
+        "id": "7284a5b7cd64f615",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "122",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 2920,
+        "y": 680,
+        "wires": [
+            [
+                "7d904212fb537ba7"
+            ],
+            [
+                "10776ef351e0d9bf"
+            ]
+        ]
+    },
+    {
+        "id": "6164c7ca62a4abe4",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 34",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2760,
+        "y": 680,
+        "wires": [
+            [
+                "7284a5b7cd64f615"
+            ]
+        ]
+    },
+    {
+        "id": "7d904212fb537ba7",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3130,
+        "y": 640,
+        "wires": [
+            [
+                "ca3e68539f5857c0"
+            ]
+        ]
+    },
+    {
+        "id": "4348e604817928ee",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2560,
+        "y": 680,
+        "wires": [
+            [
+                "6164c7ca62a4abe4"
+            ]
+        ]
+    },
+    {
+        "id": "ca3e68539f5857c0",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3340,
+        "y": 640,
+        "wires": [
+            [
+                "ef65f4c8524843b8"
+            ]
+        ]
+    },
+    {
+        "id": "389cb289661e6340",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2580,
+        "y": 720,
+        "wires": [
+            [
+                "4348e604817928ee"
+            ]
+        ]
+    },
+    {
+        "id": "545e2047389429cc",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2250,
+        "y": 680,
+        "wires": [
+            [
+                "4348e604817928ee"
+            ]
+        ]
+    },
+    {
+        "id": "3b7580bac2cef7d0",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2390,
+        "y": 720,
+        "wires": [
+            [
+                "389cb289661e6340"
+            ]
+        ]
+    },
+    {
+        "id": "b5dbd0b67d30dc0c",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2000,
+        "y": 680,
+        "wires": [
+            [
+                "545e2047389429cc"
+            ]
+        ]
+    },
+    {
+        "id": "801f2c285b088623",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1810,
+        "y": 680,
+        "wires": [
+            [
+                "b5dbd0b67d30dc0c"
+            ]
+        ]
+    },
+    {
+        "id": "af22b0c33b53a585",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 2040,
+        "y": 720,
+        "wires": [
+            [
+                "f4382b6eb7696ca0"
+            ]
+        ]
+    },
+    {
+        "id": "4d16cdda8a7a419d",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://www.colorlitelens.com/images/Ishihara/Ishihara_04.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1830,
+        "y": 720,
+        "wires": [
+            [
+                "af22b0c33b53a585",
+                "801f2c285b088623"
+            ]
+        ]
+    },
+    {
+        "id": "5de4fa70c80eb183",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 56",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nmsg.payload= 0\nvar primo = global.set(\"primo\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 360,
+        "wires": [
+            [
+                "d677da522f2a0f3c"
+            ]
+        ]
+    },
+    {
+        "id": "d677da522f2a0f3c",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1020,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "07267f8447e60afe",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 57",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nvar c = global.get(\"primo\")\n    c ++\n    msg.payload = c\n    var secondo = global.set(\"primo\", c)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 680,
+        "wires": [
+            [
+                "8ce30d5c6269bdb3"
+            ]
+        ]
+    },
+    {
+        "id": "8ce30d5c6269bdb3",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1430,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c0fdef0e5f4b3ca",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3080,
+        "y": 2080,
+        "wires": [
+            [
+                "2d96648cdf91f1f1"
+            ]
+        ]
+    },
+    {
+        "id": "2d96648cdf91f1f1",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 86",
+        "func": "var filename = {}\nfilename = {\n    filename: msg.payload\n}\nvar b = global.get(\"file\")\nmsg.file=b+\"1\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3230,
+        "y": 2080,
+        "wires": [
+            [
+                "f449cd0b6c11cf3c"
+            ]
+        ]
+    },
+    {
+        "id": "f449cd0b6c11cf3c",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 3400,
+        "y": 2080,
+        "wires": [
+            [
+                "e19160383e6099fc"
+            ]
+        ]
+    },
+    {
+        "id": "e19160383e6099fc",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 87",
+        "func": "msg.payload = msg.payload.trim()\nvar c = global.get(\"risultato\")\nmsg.file = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3570,
+        "y": 2080,
+        "wires": [
+            [
+                "b0aa9c67eeea87f5"
+            ]
+        ]
+    },
+    {
+        "id": "b0aa9c67eeea87f5",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "file",
+                "pt": "msg",
+                "to": "$number(file)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3760,
+        "y": 2080,
+        "wires": [
+            [
+                "cc8827fe85bcdf64"
+            ]
+        ]
+    },
+    {
+        "id": "cc8827fe85bcdf64",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "file",
+                "vt": "msg"
+            },
+            {
+                "t": "gt",
+                "v": "file",
+                "vt": "msg"
+            },
+            {
+                "t": "eq",
+                "v": "file",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 3930,
+        "y": 2080,
+        "wires": [
+            [
+                "23a78a9e91b40db7"
+            ],
+            [
+                "c67d2dc268061253"
+            ],
+            [
+                "897f8d1c66ca8ec0"
+            ]
+        ]
+    },
+    {
+        "id": "23a78a9e91b40db7",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 88",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4070,
+        "y": 2040,
+        "wires": [
+            [
+                "46fde106abafd65e"
+            ]
+        ]
+    },
+    {
+        "id": "c67d2dc268061253",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 89",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4070,
+        "y": 2080,
+        "wires": [
+            [
+                "330dfba75b9e562b"
+            ]
+        ]
+    },
+    {
+        "id": "897f8d1c66ca8ec0",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 90",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4070,
+        "y": 2120,
+        "wires": [
+            [
+                "ddc53bde19956c64"
+            ]
+        ]
+    },
+    {
+        "id": "46fde106abafd65e",
+        "type": "fs-ops-delete",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "x": 4230,
+        "y": 2040,
+        "wires": [
+            [
+                "2d8dc7754c5e65d5"
+            ]
+        ]
+    },
+    {
+        "id": "330dfba75b9e562b",
+        "type": "fs-ops-delete",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "x": 4230,
+        "y": 2080,
+        "wires": [
+            [
+                "abe64ff6abdf9f57"
+            ]
+        ]
+    },
+    {
+        "id": "ddc53bde19956c64",
+        "type": "fs-ops-delete",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "x": 4230,
+        "y": 2120,
+        "wires": [
+            [
+                "442460f027f6ea65"
+            ]
+        ]
+    },
+    {
+        "id": "2d8dc7754c5e65d5",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 91",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"primo\")\nmsg.file=b+\"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4390,
+        "y": 2040,
+        "wires": [
+            [
+                "100d3f09a3c86b53"
+            ]
+        ]
+    },
+    {
+        "id": "abe64ff6abdf9f57",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 92",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"primo\")\nmsg.file=b+\"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4390,
+        "y": 2080,
+        "wires": [
+            [
+                "3864b6a14778018e"
+            ]
+        ]
+    },
+    {
+        "id": "442460f027f6ea65",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 93",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"primo\")\nmsg.file=b+\"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4390,
+        "y": 2120,
+        "wires": [
+            [
+                "15df580b11ee1e3d"
+            ]
+        ]
+    },
+    {
+        "id": "100d3f09a3c86b53",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 4560,
+        "y": 2040,
+        "wires": [
+            [
+                "befe30f08bc4ab19"
+            ]
+        ]
+    },
+    {
+        "id": "3864b6a14778018e",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 4560,
+        "y": 2080,
+        "wires": [
+            [
+                "8238aa67afb6b213"
+            ]
+        ]
+    },
+    {
+        "id": "15df580b11ee1e3d",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 4560,
+        "y": 2120,
+        "wires": [
+            [
+                "a7fa1c6a318a798c"
+            ]
+        ]
+    },
+    {
+        "id": "befe30f08bc4ab19",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "link out 4",
+        "mode": "link",
+        "links": [
+            "a6ebfa37dd0cc7f4",
+            "66a732c7efd38653"
+        ],
+        "x": 4665,
+        "y": 2040,
+        "wires": []
+    },
+    {
+        "id": "8238aa67afb6b213",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "link out 5",
+        "mode": "link",
+        "links": [
+            "e4ca6dc645342f94",
+            "2e1eea1c2baf12b3"
+        ],
+        "x": 4665,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "a7fa1c6a318a798c",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "link out 6",
+        "mode": "link",
+        "links": [
+            "683edc2c95d46435",
+            "985ce446e20a20d8"
+        ],
+        "x": 4665,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "3819bad86ad9e1ed",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "link in 4",
+        "links": [
+            "bb89ecfe945d90be",
+            "43337c12b7bee980"
+        ],
+        "x": 2955,
+        "y": 2080,
+        "wires": [
+            [
+                "3c0fdef0e5f4b3ca"
+            ]
+        ]
+    },
+    {
+        "id": "15cecd040ddbd878",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 280,
+        "wires": [
+            [
+                "d287e7ff73eb6aa6"
+            ]
+        ]
+    },
+    {
+        "id": "d287e7ff73eb6aa6",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Salve, questo Ã¨ un test del daltonismo autogestito, verranno visualizzati dei numeri sulla crhomecast, presta attenzione e rispondi come piÃ¹ opportuno "
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 1000,
+        "y": 280,
+        "wires": [
+            [
+                "409d8d92578e27c6"
+            ]
+        ]
+    },
+    {
+        "id": "bb8fd9f4a45245ed",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "iniziamo?"
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    },
+                    {
+                        "type": "skill",
+                        "payload": {
+                            "skill": {
+                                "type": "str",
+                                "value": "amzn1.ask.skill.6cdfc8e6-b6a1-4597-a569-c74350aeed6f"
+                            },
+                            "device": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 1400,
+        "y": 280,
+        "wires": [
+            [
+                "2c5fd5e7945d04aa"
+            ]
+        ]
+    },
+    {
+        "id": "2c5fd5e7945d04aa",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 104",
+        "func": "var id = 1\nglobal.set(\"id\", id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1590,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb1313d30a5cc1a8",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload.description.summary",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "si",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sÃ¬",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "41df5d8eb7d5babc"
+            ],
+            [
+                "41df5d8eb7d5babc"
+            ],
+            [
+                "5aa3956b95704aac"
+            ]
+        ]
+    },
+    {
+        "id": "6761d935ea7d5afb",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "id",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "bb1313d30a5cc1a8"
+            ]
+        ]
+    },
+    {
+        "id": "1020abb66090efcd",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Che numero Ã¨?"
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    },
+                    {
+                        "type": "skill",
+                        "payload": {
+                            "skill": {
+                                "type": "str",
+                                "value": "amzn1.ask.skill.6cdfc8e6-b6a1-4597-a569-c74350aeed6f"
+                            },
+                            "device": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3660,
+        "y": 400,
+        "wires": [
+            [
+                "09e1505898134362"
+            ]
+        ]
+    },
+    {
+        "id": "09e1505898134362",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 105",
+        "func": "var id = 2\nglobal.set(\"id\", id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3850,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "efcf23a04dfc3440",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "id",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 720,
+        "wires": [
+            [
+                "c6b5bff141067e5c"
+            ]
+        ]
+    },
+    {
+        "id": "fb337e64ad425fdd",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "sei",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "sei",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 540,
+        "y": 720,
+        "wires": [
+            [
+                "8e1560f6311512c3"
+            ],
+            [
+                "fcd9e60810e28225"
+            ],
+            [
+                "992dbed44c1feb5d"
+            ]
+        ]
+    },
+    {
+        "id": "de92f7b9b72d2f74",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "prima domanda",
+        "links": [
+            "4d7a9a22c5533abc"
+        ],
+        "x": 55,
+        "y": 400,
+        "wires": [
+            [
+                "6761d935ea7d5afb"
+            ]
+        ]
+    },
+    {
+        "id": "4d7a9a22c5533abc",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "risposte",
+        "mode": "link",
+        "links": [
+            "de92f7b9b72d2f74",
+            "0ea7e3c21739c572",
+            "bfcc9ab4f2a2bdef",
+            "78dbcad4b3968022",
+            "c33387d4e91b682c",
+            "75eb9b854dfb14e6",
+            "b22285cf52ad0ae7",
+            "e1611c61dbfee0be"
+        ],
+        "x": 235,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "0ea7e3c21739c572",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "prima domanda",
+        "links": [
+            "4d7a9a22c5533abc"
+        ],
+        "x": 45,
+        "y": 720,
+        "wires": [
+            [
+                "efcf23a04dfc3440"
+            ]
+        ]
+    },
+    {
+        "id": "8e1560f6311512c3",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 680,
+        "wires": [
+            [
+                "cc161183397419a1"
+            ]
+        ]
+    },
+    {
+        "id": "cc161183397419a1",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Complimenti, prossimo numero."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 890,
+        "y": 680,
+        "wires": [
+            [
+                "d78de960e6c7f41f",
+                "07267f8447e60afe"
+            ]
+        ]
+    },
+    {
+        "id": "992dbed44c1feb5d",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 760,
+        "wires": [
+            [
+                "7317add259a06333"
+            ]
+        ]
+    },
+    {
+        "id": "7317add259a06333",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Mi dispiace, il numero raffigurato era 6, prossimo numero"
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 890,
+        "y": 760,
+        "wires": [
+            [
+                "d78de960e6c7f41f"
+            ]
+        ]
+    },
+    {
+        "id": "ceb166729d496623",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Che numero Ã¨?"
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    },
+                    {
+                        "type": "skill",
+                        "payload": {
+                            "skill": {
+                                "type": "str",
+                                "value": "amzn1.ask.skill.89a70dd3-31b4-483e-9d7d-fc8761827996"
+                            },
+                            "device": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3900,
+        "y": 720,
+        "wires": [
+            [
+                "04953fe247304732"
+            ]
+        ]
+    },
+    {
+        "id": "04953fe247304732",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 106",
+        "func": "var id = 3\nglobal.set(\"id\", id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4130,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a51399a6286282f4",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Hai inserito un valore errato di indirizzo IP della crhomecast."
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3740,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d5ddae915a7f3f4",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "global",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 720,
+        "wires": [
+            [
+                "fb337e64ad425fdd"
+            ]
+        ]
+    },
+    {
+        "id": "204ca11f3b8a31b6",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 108",
+        "func": "var conversazione = msg.payload.description.summary\nglobal.set(\"conversazione\", conversazione)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0d5b3fc5044b7cb7",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "id",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 980,
+        "wires": [
+            [
+                "683888e5ada43b74"
+            ]
+        ]
+    },
+    {
+        "id": "915bd831f3ad5a25",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "due",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "due",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 530,
+        "y": 980,
+        "wires": [
+            [
+                "0699ee0d2cd162ec"
+            ],
+            [
+                "6cd5e98a6f4f12b1"
+            ],
+            [
+                "9f80f1a74f5aef38"
+            ]
+        ]
+    },
+    {
+        "id": "78dbcad4b3968022",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "prima domanda",
+        "links": [
+            "4d7a9a22c5533abc"
+        ],
+        "x": 35,
+        "y": 980,
+        "wires": [
+            [
+                "0d5b3fc5044b7cb7"
+            ]
+        ]
+    },
+    {
+        "id": "a06b4f06ce7b6295",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "global",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 980,
+        "wires": [
+            [
+                "915bd831f3ad5a25"
+            ]
+        ]
+    },
+    {
+        "id": "683888e5ada43b74",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 980,
+        "wires": [
+            [
+                "a06b4f06ce7b6295"
+            ]
+        ]
+    },
+    {
+        "id": "9f80f1a74f5aef38",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 1020,
+        "wires": [
+            [
+                "da212459d61c3812"
+            ]
+        ]
+    },
+    {
+        "id": "da212459d61c3812",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Mi dispiace, il numero raffigurato era 2, prossimo numero"
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 880,
+        "y": 1020,
+        "wires": [
+            [
+                "eada8351be3ed99c"
+            ]
+        ]
+    },
+    {
+        "id": "0699ee0d2cd162ec",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 940,
+        "wires": [
+            [
+                "201e22dd37431165"
+            ]
+        ]
+    },
+    {
+        "id": "201e22dd37431165",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Complimenti, prossimo numero."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 880,
+        "y": 940,
+        "wires": [
+            [
+                "eada8351be3ed99c",
+                "0cc446b1771a5eb0"
+            ]
+        ]
+    },
+    {
+        "id": "c1fa72b6d5d04def",
+        "type": "ui_ui_control",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "af2c824f1abb14c6",
+                "947fe1d615a78168"
+            ]
+        ]
+    },
+    {
+        "id": "af2c824f1abb14c6",
+        "type": "ui_text_input",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "460284767f342b79",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "0c72ff4ad89feafe"
+            ]
+        ]
+    },
+    {
+        "id": "947fe1d615a78168",
+        "type": "ui_text_input",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "077688841874a022",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "84afd26580f1595b"
+            ]
+        ]
+    },
+    {
+        "id": "0c72ff4ad89feafe",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "UserInput",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "3b0d0fce79faeb1e"
+            ]
+        ]
+    },
+    {
+        "id": "84afd26580f1595b",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "UserInput",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 200,
+        "wires": [
+            [
+                "2a5ae080f7d5ebc7"
+            ]
+        ]
+    },
+    {
+        "id": "3b0d0fce79faeb1e",
+        "type": "ui_button",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "group": "460284767f342b79",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "IMPOSTA",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 760,
+        "y": 100,
+        "wires": [
+            [
+                "52d5eb67642edd2c"
+            ]
+        ]
+    },
+    {
+        "id": "2a5ae080f7d5ebc7",
+        "type": "ui_button",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "group": "077688841874a022",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "IMPOSTA",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 760,
+        "y": 200,
+        "wires": [
+            [
+                "7ba9b9a21f1600ec"
+            ]
+        ]
+    },
+    {
+        "id": "52d5eb67642edd2c",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "UserInput",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 100,
+        "wires": [
+            [
+                "6ea695851e46faf7"
+            ]
+        ]
+    },
+    {
+        "id": "7ba9b9a21f1600ec",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "UserInput",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 200,
+        "wires": [
+            [
+                "ce653c8ca5dbeaea"
+            ]
+        ]
+    },
+    {
+        "id": "6ea695851e46faf7",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "payload",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1090,
+        "y": 100,
+        "wires": [
+            [
+                "01f93384c573f8ef",
+                "2c527000c87c7487"
+            ]
+        ]
+    },
+    {
+        "id": "ce653c8ca5dbeaea",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "payload",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1090,
+        "y": 200,
+        "wires": [
+            [
+                "4837a99715e5776d",
+                "9c91b5b50dcf9bf5"
+            ]
+        ]
+    },
+    {
+        "id": "01f93384c573f8ef",
+        "type": "ui_text",
+        "z": "bd230b2d7e916b48",
+        "group": "460284767f342b79",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "IP:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1290,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "2c527000c87c7487",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 2",
+        "func": "var ip = {}\nip = {\n    ip:msg.payload\n}\nmsg.payload=ip\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1280,
+        "y": 100,
+        "wires": [
+            [
+                "9db43fc68c9e0444"
+            ]
+        ]
+    },
+    {
+        "id": "4837a99715e5776d",
+        "type": "ui_text",
+        "z": "bd230b2d7e916b48",
+        "group": "077688841874a022",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Nome File",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1310,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9c91b5b50dcf9bf5",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 42",
+        "func": "var c = msg.payload\nglobal.set(\"file_iniziale\", c)\nreturn msg; ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 200,
+        "wires": [
+            [
+                "232b05c1abea52d8"
+            ]
+        ]
+    },
+    {
+        "id": "9db43fc68c9e0444",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1490,
+        "y": 100,
+        "wires": [
+            [
+                "8e5b3587a8cc5c4f"
+            ]
+        ]
+    },
+    {
+        "id": "232b05c1abea52d8",
+        "type": "fs-ops-access",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT",
+        "pathType": "str",
+        "filename": "payload.file",
+        "filenameType": "msg",
+        "read": true,
+        "write": true,
+        "throwerror": false,
+        "x": 1470,
+        "y": 200,
+        "wires": [
+            [
+                "6efb4f125bac56d1"
+            ],
+            [
+                "6efb4f125bac56d1"
+            ]
+        ]
+    },
+    {
+        "id": "8e5b3587a8cc5c4f",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1730,
+        "y": 100,
+        "wires": [
+            [
+                "1f09c48ac762312e"
+            ]
+        ]
+    },
+    {
+        "id": "6efb4f125bac56d1",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 45",
+        "func": "var path = {}\npath = {\n    path:msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1670,
+        "y": 200,
+        "wires": [
+            [
+                "eeb51a3552c31e9a",
+                "7d99604771a8be81"
+            ]
+        ]
+    },
+    {
+        "id": "1f09c48ac762312e",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 4",
+        "func": "msg.payload = msg.payload.trim()\nvar ip = (msg.payload)\nmsg.ip = ip.replace(/{|\"|ip|:|}|â†µ|/gi, '')\nmsg.payload = ip.replace(/{|\"|ip|:|}|â†µ|/gi, '')\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1920,
+        "y": 100,
+        "wires": [
+            [
+                "4acdf5f13e0367ce"
+            ]
+        ]
+    },
+    {
+        "id": "eeb51a3552c31e9a",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 44",
+        "func": "var a = \"/root/ACCOUNT/\"\nmsg.file=a+msg.payload\nglobal.set(\"file\",msg.file)\nmsg.payload=\"\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1870,
+        "y": 200,
+        "wires": [
+            [
+                "9e485adb5bdb67db",
+                "1a09a5e3cbd24918"
+            ]
+        ]
+    },
+    {
+        "id": "7d99604771a8be81",
+        "type": "debug",
+        "z": "bd230b2d7e916b48",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1860,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4acdf5f13e0367ce",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2110,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e485adb5bdb67db",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2080,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a09a5e3cbd24918",
+        "type": "debug",
+        "z": "bd230b2d7e916b48",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2060,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ef65f4c8524843b8",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3560,
+        "y": 640,
+        "wires": [
+            [
+                "a51399a6286282f4"
+            ]
+        ]
+    },
+    {
+        "id": "a03487d30eec6698",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3720,
+        "y": 720,
+        "wires": [
+            [
+                "ceb166729d496623"
+            ]
+        ]
+    },
+    {
+        "id": "9eb762232075b60a",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 800,
+        "y": 400,
+        "wires": [
+            [
+                "5ad781cd50afa53f"
+            ]
+        ]
+    },
+    {
+        "id": "5ad781cd50afa53f",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 990,
+        "y": 400,
+        "wires": [
+            [
+                "89a56948501732bf"
+            ]
+        ]
+    },
+    {
+        "id": "89a56948501732bf",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 109",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 400,
+        "wires": [
+            [
+                "cca329f7bf81eee1"
+            ]
+        ]
+    },
+    {
+        "id": "cca329f7bf81eee1",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1360,
+        "y": 400,
+        "wires": [
+            [
+                "e2e38ab70e73f83a"
+            ]
+        ]
+    },
+    {
+        "id": "e2e38ab70e73f83a",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://www.colorlitelens.com/images/Ishihara/Ishihara_02.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1560,
+        "y": 400,
+        "wires": [
+            [
+                "0e7907b6ae601f18",
+                "571915db7248767b"
+            ]
+        ]
+    },
+    {
+        "id": "0e7907b6ae601f18",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 1770,
+        "y": 400,
+        "wires": [
+            [
+                "7e3f537dbe790b3a",
+                "4a7379985fb7f1da"
+            ]
+        ]
+    },
+    {
+        "id": "571915db7248767b",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1540,
+        "y": 360,
+        "wires": [
+            [
+                "f3099306899f53d3"
+            ]
+        ]
+    },
+    {
+        "id": "7e3f537dbe790b3a",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "cast/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1950,
+        "y": 400,
+        "wires": [
+            [
+                "fd6ef90a964630eb",
+                "748458efc4d2d55b"
+            ]
+        ]
+    },
+    {
+        "id": "f3099306899f53d3",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1730,
+        "y": 360,
+        "wires": [
+            [
+                "390ef2123c4a8634"
+            ]
+        ]
+    },
+    {
+        "id": "fd6ef90a964630eb",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2120,
+        "y": 400,
+        "wires": [
+            [
+                "81fcfd5167857de6",
+                "b72446a2bc993a21"
+            ]
+        ]
+    },
+    {
+        "id": "390ef2123c4a8634",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1980,
+        "y": 360,
+        "wires": [
+            [
+                "2550068df815bce3"
+            ]
+        ]
+    },
+    {
+        "id": "81fcfd5167857de6",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2310,
+        "y": 400,
+        "wires": [
+            [
+                "2550068df815bce3"
+            ]
+        ]
+    },
+    {
+        "id": "2550068df815bce3",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2290,
+        "y": 360,
+        "wires": [
+            [
+                "0ca0af65ae4f0bb7"
+            ]
+        ]
+    },
+    {
+        "id": "0ca0af65ae4f0bb7",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 110",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2490,
+        "y": 360,
+        "wires": [
+            [
+                "67b769eb665f1247",
+                "3f8ef5ca51c35c3c"
+            ]
+        ]
+    },
+    {
+        "id": "67b769eb665f1247",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "122",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 2650,
+        "y": 360,
+        "wires": [
+            [
+                "2c3629fd2a9bc4c9"
+            ],
+            [
+                "cf05845ecbebca69"
+            ]
+        ]
+    },
+    {
+        "id": "2c3629fd2a9bc4c9",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2860,
+        "y": 320,
+        "wires": [
+            [
+                "0b319fea62abf80d"
+            ]
+        ]
+    },
+    {
+        "id": "cf05845ecbebca69",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2860,
+        "y": 400,
+        "wires": [
+            [
+                "1fe9fd53b112066e"
+            ]
+        ]
+    },
+    {
+        "id": "0b319fea62abf80d",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3070,
+        "y": 320,
+        "wires": [
+            [
+                "3cc94d24a1837473"
+            ]
+        ]
+    },
+    {
+        "id": "1fe9fd53b112066e",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3070,
+        "y": 400,
+        "wires": [
+            [
+                "8f0dddfe282ec82d"
+            ]
+        ]
+    },
+    {
+        "id": "3cc94d24a1837473",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3260,
+        "y": 320,
+        "wires": [
+            [
+                "babccde52eae218a"
+            ]
+        ]
+    },
+    {
+        "id": "8f0dddfe282ec82d",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3280,
+        "y": 400,
+        "wires": [
+            [
+                "d3ac4e484b9c1eb2"
+            ]
+        ]
+    },
+    {
+        "id": "babccde52eae218a",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Hai inserito un valore errato di indirizzo IP della crhomecast. "
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3440,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3ac4e484b9c1eb2",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3460,
+        "y": 400,
+        "wires": [
+            [
+                "1020abb66090efcd"
+            ]
+        ]
+    },
+    {
+        "id": "f4382b6eb7696ca0",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "cast/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 2220,
+        "y": 720,
+        "wires": [
+            [
+                "3b7580bac2cef7d0"
+            ]
+        ]
+    },
+    {
+        "id": "eada8351be3ed99c",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1060,
+        "y": 980,
+        "wires": [
+            [
+                "f9eb774cc03c4811"
+            ]
+        ]
+    },
+    {
+        "id": "f9eb774cc03c4811",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1250,
+        "y": 980,
+        "wires": [
+            [
+                "6e88871a530310ef"
+            ]
+        ]
+    },
+    {
+        "id": "6e88871a530310ef",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 113",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1480,
+        "y": 980,
+        "wires": [
+            [
+                "5e451b5e2bd1c908"
+            ]
+        ]
+    },
+    {
+        "id": "5e451b5e2bd1c908",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1680,
+        "y": 980,
+        "wires": [
+            [
+                "520f673f4675a6ad"
+            ]
+        ]
+    },
+    {
+        "id": "520f673f4675a6ad",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://www.colorlitelens.com/images/Ishihara/Ishihara_06.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1880,
+        "y": 980,
+        "wires": [
+            [
+                "99b32a674ea12166",
+                "da0a7fee734bfea1"
+            ]
+        ]
+    },
+    {
+        "id": "99b32a674ea12166",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 2090,
+        "y": 980,
+        "wires": [
+            [
+                "a3efb4659d844f36"
+            ]
+        ]
+    },
+    {
+        "id": "da0a7fee734bfea1",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1860,
+        "y": 940,
+        "wires": [
+            [
+                "b2899ea6fe2f022b"
+            ]
+        ]
+    },
+    {
+        "id": "b2899ea6fe2f022b",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2050,
+        "y": 940,
+        "wires": [
+            [
+                "e0bbe5a889c83554"
+            ]
+        ]
+    },
+    {
+        "id": "3f020c795c1b088d",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2440,
+        "y": 980,
+        "wires": [
+            [
+                "e4357ab8962ede63"
+            ]
+        ]
+    },
+    {
+        "id": "e0bbe5a889c83554",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2300,
+        "y": 940,
+        "wires": [
+            [
+                "cb07932af0129334"
+            ]
+        ]
+    },
+    {
+        "id": "e4357ab8962ede63",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2630,
+        "y": 980,
+        "wires": [
+            [
+                "cb07932af0129334"
+            ]
+        ]
+    },
+    {
+        "id": "cb07932af0129334",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2610,
+        "y": 940,
+        "wires": [
+            [
+                "1ea8d0d48917b9ed"
+            ]
+        ]
+    },
+    {
+        "id": "1ea8d0d48917b9ed",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 114",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2810,
+        "y": 940,
+        "wires": [
+            [
+                "900a77dcfcc18672"
+            ]
+        ]
+    },
+    {
+        "id": "900a77dcfcc18672",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "122",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 2970,
+        "y": 940,
+        "wires": [
+            [
+                "d4391de5cc74ba20"
+            ],
+            [
+                "7879bba6d3ad7d0a"
+            ]
+        ]
+    },
+    {
+        "id": "d4391de5cc74ba20",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3180,
+        "y": 900,
+        "wires": [
+            [
+                "5cdb41c978eed3a5"
+            ]
+        ]
+    },
+    {
+        "id": "7879bba6d3ad7d0a",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3180,
+        "y": 980,
+        "wires": [
+            [
+                "d44c3a312b3ea56d"
+            ]
+        ]
+    },
+    {
+        "id": "5cdb41c978eed3a5",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3390,
+        "y": 900,
+        "wires": [
+            [
+                "1dc133bc9181c206"
+            ]
+        ]
+    },
+    {
+        "id": "d44c3a312b3ea56d",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3390,
+        "y": 980,
+        "wires": [
+            [
+                "6c8fb02d26f8fbbf"
+            ]
+        ]
+    },
+    {
+        "id": "6c8fb02d26f8fbbf",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3580,
+        "y": 980,
+        "wires": [
+            [
+                "da16c401ce68b5ac"
+            ]
+        ]
+    },
+    {
+        "id": "0cc446b1771a5eb0",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 117",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nvar c = global.get(\"primo\")\n    c ++\n    msg.payload = c\n    var quarto = global.set(\"primo\", c)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 940,
+        "wires": [
+            [
+                "b408117e87862abd"
+            ]
+        ]
+    },
+    {
+        "id": "b408117e87862abd",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1440,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3efb4659d844f36",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "cast/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 2270,
+        "y": 980,
+        "wires": [
+            [
+                "3f020c795c1b088d"
+            ]
+        ]
+    },
+    {
+        "id": "cd4806c6fb5795b6",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Hai inserito un valore errato di indirizzo IP della crhomecast."
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3820,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1dc133bc9181c206",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3620,
+        "y": 900,
+        "wires": [
+            [
+                "cd4806c6fb5795b6"
+            ]
+        ]
+    },
+    {
+        "id": "c8af27c5b844cb03",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Che numero Ã¨?"
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    },
+                    {
+                        "type": "skill",
+                        "payload": {
+                            "skill": {
+                                "type": "str",
+                                "value": "amzn1.ask.skill.89a70dd3-31b4-483e-9d7d-fc8761827996"
+                            },
+                            "device": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3940,
+        "y": 980,
+        "wires": [
+            [
+                "0dc12e1a98ff73ce"
+            ]
+        ]
+    },
+    {
+        "id": "0dc12e1a98ff73ce",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 118",
+        "func": "var id = 4\nglobal.set(\"id\", id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4110,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c33387d4e91b682c",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "prima domanda",
+        "links": [
+            "4d7a9a22c5533abc"
+        ],
+        "x": 35,
+        "y": 1200,
+        "wires": [
+            [
+                "deb90bdb93494a68"
+            ]
+        ]
+    },
+    {
+        "id": "deb90bdb93494a68",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "id",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 1200,
+        "wires": [
+            [
+                "82931f0fb859dd9c"
+            ]
+        ]
+    },
+    {
+        "id": "1a12fabea98bea26",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "global",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 1200,
+        "wires": [
+            [
+                "bd99e1639dfc2dfb"
+            ]
+        ]
+    },
+    {
+        "id": "bd99e1639dfc2dfb",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "sette",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "sette",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 530,
+        "y": 1200,
+        "wires": [
+            [
+                "490edee7d46fdfc2"
+            ],
+            [
+                "8a9326d7a88f9e92"
+            ],
+            [
+                "b6b73a6d41dec787"
+            ]
+        ]
+    },
+    {
+        "id": "490edee7d46fdfc2",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 1160,
+        "wires": [
+            [
+                "f300dfd53ccdadfb"
+            ]
+        ]
+    },
+    {
+        "id": "b6b73a6d41dec787",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 1240,
+        "wires": [
+            [
+                "6bb966953ad24c02"
+            ]
+        ]
+    },
+    {
+        "id": "f300dfd53ccdadfb",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Complimenti, prossimo numero."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 880,
+        "y": 1160,
+        "wires": [
+            [
+                "4d8c15a34ef2aed2",
+                "a1e398aa5369e679"
+            ]
+        ]
+    },
+    {
+        "id": "6bb966953ad24c02",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Mi dispiace, il numero raffigurato era 7, prossimo numero"
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 880,
+        "y": 1240,
+        "wires": [
+            [
+                "4d8c15a34ef2aed2"
+            ]
+        ]
+    },
+    {
+        "id": "4d8c15a34ef2aed2",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1060,
+        "y": 1200,
+        "wires": [
+            [
+                "17c08d6e71239b33"
+            ]
+        ]
+    },
+    {
+        "id": "a1e398aa5369e679",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 119",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nvar c = global.get(\"primo\")\n    c ++\n    msg.payload = c\n    var quarto = global.set(\"primo\", c)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 1160,
+        "wires": [
+            [
+                "d8a34459f421f04b"
+            ]
+        ]
+    },
+    {
+        "id": "17c08d6e71239b33",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1250,
+        "y": 1200,
+        "wires": [
+            [
+                "69cad2ecaee9cc45"
+            ]
+        ]
+    },
+    {
+        "id": "d8a34459f421f04b",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1440,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69cad2ecaee9cc45",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 120",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1480,
+        "y": 1200,
+        "wires": [
+            [
+                "803b409b5b4beec4"
+            ]
+        ]
+    },
+    {
+        "id": "803b409b5b4beec4",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1680,
+        "y": 1200,
+        "wires": [
+            [
+                "0c9db7e794db4b7a"
+            ]
+        ]
+    },
+    {
+        "id": "0c9db7e794db4b7a",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://www.colorlitelens.com/images/Ishihara/Ishihara_08.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1880,
+        "y": 1200,
+        "wires": [
+            [
+                "8fe2adae6459b65b",
+                "13e95d938b2e1cc9"
+            ]
+        ]
+    },
+    {
+        "id": "8fe2adae6459b65b",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 2090,
+        "y": 1200,
+        "wires": [
+            [
+                "23bec4f81fffd9bb"
+            ]
+        ]
+    },
+    {
+        "id": "13e95d938b2e1cc9",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1860,
+        "y": 1160,
+        "wires": [
+            [
+                "609ca56208fb96c2"
+            ]
+        ]
+    },
+    {
+        "id": "23bec4f81fffd9bb",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "cast/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 2270,
+        "y": 1200,
+        "wires": [
+            [
+                "4724cc87311a1fa3"
+            ]
+        ]
+    },
+    {
+        "id": "609ca56208fb96c2",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2050,
+        "y": 1160,
+        "wires": [
+            [
+                "0d2c303e24e64572"
+            ]
+        ]
+    },
+    {
+        "id": "4724cc87311a1fa3",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2440,
+        "y": 1200,
+        "wires": [
+            [
+                "55661ebd41ddf711"
+            ]
+        ]
+    },
+    {
+        "id": "0d2c303e24e64572",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2300,
+        "y": 1160,
+        "wires": [
+            [
+                "880a9db799cd51b5"
+            ]
+        ]
+    },
+    {
+        "id": "55661ebd41ddf711",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2630,
+        "y": 1200,
+        "wires": [
+            [
+                "880a9db799cd51b5"
+            ]
+        ]
+    },
+    {
+        "id": "880a9db799cd51b5",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2610,
+        "y": 1160,
+        "wires": [
+            [
+                "568da789852b57f4"
+            ]
+        ]
+    },
+    {
+        "id": "568da789852b57f4",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 121",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2810,
+        "y": 1160,
+        "wires": [
+            [
+                "0c8079944554404e"
+            ]
+        ]
+    },
+    {
+        "id": "0c8079944554404e",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "122",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 2970,
+        "y": 1160,
+        "wires": [
+            [
+                "04b41f52cae5231e"
+            ],
+            [
+                "8bee3c5fbe363bd1"
+            ]
+        ]
+    },
+    {
+        "id": "04b41f52cae5231e",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3180,
+        "y": 1120,
+        "wires": [
+            [
+                "698ecba178bbd9a2"
+            ]
+        ]
+    },
+    {
+        "id": "8bee3c5fbe363bd1",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3180,
+        "y": 1200,
+        "wires": [
+            [
+                "a80ed13d687968ce"
+            ]
+        ]
+    },
+    {
+        "id": "698ecba178bbd9a2",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3390,
+        "y": 1120,
+        "wires": [
+            [
+                "f59723394dc09871"
+            ]
+        ]
+    },
+    {
+        "id": "a80ed13d687968ce",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3390,
+        "y": 1200,
+        "wires": [
+            [
+                "cbe33dac2ac7999f"
+            ]
+        ]
+    },
+    {
+        "id": "f59723394dc09871",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3620,
+        "y": 1120,
+        "wires": [
+            [
+                "6db0a79e5a255cae"
+            ]
+        ]
+    },
+    {
+        "id": "cbe33dac2ac7999f",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3600,
+        "y": 1200,
+        "wires": [
+            [
+                "641c23c2cc8441ba"
+            ]
+        ]
+    },
+    {
+        "id": "6db0a79e5a255cae",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Hai inserito un valore errato di indirizzo IP della crhomecast."
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3820,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29c335f077b4fe30",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Che numero Ã¨?"
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    },
+                    {
+                        "type": "skill",
+                        "payload": {
+                            "skill": {
+                                "type": "str",
+                                "value": "amzn1.ask.skill.89a70dd3-31b4-483e-9d7d-fc8761827996"
+                            },
+                            "device": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3940,
+        "y": 1200,
+        "wires": [
+            [
+                "9339bef0583f4491"
+            ]
+        ]
+    },
+    {
+        "id": "9339bef0583f4491",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 124",
+        "func": "var id = 5\nglobal.set(\"id\", id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4130,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "75eb9b854dfb14e6",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "prima domanda",
+        "links": [
+            "4d7a9a22c5533abc"
+        ],
+        "x": 35,
+        "y": 1440,
+        "wires": [
+            [
+                "26137e0dc6148baa"
+            ]
+        ]
+    },
+    {
+        "id": "26137e0dc6148baa",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "id",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 1440,
+        "wires": [
+            [
+                "63ebacfa0facb1dd"
+            ]
+        ]
+    },
+    {
+        "id": "98c2b7e2b94ba391",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "global",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 1440,
+        "wires": [
+            [
+                "48a0287551289217"
+            ]
+        ]
+    },
+    {
+        "id": "48a0287551289217",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "cinque",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "cinque",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 540,
+        "y": 1440,
+        "wires": [
+            [
+                "7030c2e3173f68cd"
+            ],
+            [
+                "5005caa6dd487618"
+            ],
+            [
+                "436d7733a13aa118"
+            ]
+        ]
+    },
+    {
+        "id": "7030c2e3173f68cd",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 1400,
+        "wires": [
+            [
+                "3494d05484ca0d7b"
+            ]
+        ]
+    },
+    {
+        "id": "436d7733a13aa118",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 1480,
+        "wires": [
+            [
+                "f7a0882b73bd9169"
+            ]
+        ]
+    },
+    {
+        "id": "3494d05484ca0d7b",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Complimenti, prossimo numero."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 890,
+        "y": 1400,
+        "wires": [
+            [
+                "40653192f44e8cd7",
+                "54b3dec318e6a365"
+            ]
+        ]
+    },
+    {
+        "id": "f7a0882b73bd9169",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Mi dispiace, il numero raffigurato era 5, prossimo numero"
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 890,
+        "y": 1480,
+        "wires": [
+            [
+                "40653192f44e8cd7"
+            ]
+        ]
+    },
+    {
+        "id": "40653192f44e8cd7",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1070,
+        "y": 1440,
+        "wires": [
+            [
+                "1a277d46f6a0a21f"
+            ]
+        ]
+    },
+    {
+        "id": "54b3dec318e6a365",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 125",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nvar c = global.get(\"primo\")\n    c ++\n    msg.payload = c\n    var quarto = global.set(\"primo\", c)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 1400,
+        "wires": [
+            [
+                "b9099dbeeae3059a"
+            ]
+        ]
+    },
+    {
+        "id": "1a277d46f6a0a21f",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1260,
+        "y": 1440,
+        "wires": [
+            [
+                "b35bf73d2c16dedb"
+            ]
+        ]
+    },
+    {
+        "id": "b9099dbeeae3059a",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1450,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b35bf73d2c16dedb",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 126",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 1440,
+        "wires": [
+            [
+                "12b16a03a92d7cad"
+            ]
+        ]
+    },
+    {
+        "id": "12b16a03a92d7cad",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1690,
+        "y": 1440,
+        "wires": [
+            [
+                "8f58e4af64d29796"
+            ]
+        ]
+    },
+    {
+        "id": "8f58e4af64d29796",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://www.colorlitelens.com/images/Ishihara/Ishihara_10.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1890,
+        "y": 1440,
+        "wires": [
+            [
+                "5f28193e1580627d",
+                "09e1fd7a5a20b991"
+            ]
+        ]
+    },
+    {
+        "id": "5f28193e1580627d",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 2100,
+        "y": 1440,
+        "wires": [
+            [
+                "b1a09d07d421bc2c"
+            ]
+        ]
+    },
+    {
+        "id": "09e1fd7a5a20b991",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1870,
+        "y": 1400,
+        "wires": [
+            [
+                "aeaaf71229fba209"
+            ]
+        ]
+    },
+    {
+        "id": "b1a09d07d421bc2c",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "cast/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 2280,
+        "y": 1440,
+        "wires": [
+            [
+                "06b63a4cbbfe08c6"
+            ]
+        ]
+    },
+    {
+        "id": "aeaaf71229fba209",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2060,
+        "y": 1400,
+        "wires": [
+            [
+                "b533fd538f0908e7"
+            ]
+        ]
+    },
+    {
+        "id": "06b63a4cbbfe08c6",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2450,
+        "y": 1440,
+        "wires": [
+            [
+                "6a78e3f070475b63"
+            ]
+        ]
+    },
+    {
+        "id": "b533fd538f0908e7",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2310,
+        "y": 1400,
+        "wires": [
+            [
+                "1f5811a9182814dc"
+            ]
+        ]
+    },
+    {
+        "id": "6a78e3f070475b63",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2640,
+        "y": 1440,
+        "wires": [
+            [
+                "1f5811a9182814dc"
+            ]
+        ]
+    },
+    {
+        "id": "1f5811a9182814dc",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2620,
+        "y": 1400,
+        "wires": [
+            [
+                "1ac95defa88b3cc0"
+            ]
+        ]
+    },
+    {
+        "id": "1ac95defa88b3cc0",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 127",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2820,
+        "y": 1400,
+        "wires": [
+            [
+                "369c6190a5340f0f"
+            ]
+        ]
+    },
+    {
+        "id": "369c6190a5340f0f",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "122",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 2980,
+        "y": 1400,
+        "wires": [
+            [
+                "f37733ca0b9c64e3"
+            ],
+            [
+                "7b6b02948788a73e"
+            ]
+        ]
+    },
+    {
+        "id": "f37733ca0b9c64e3",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3190,
+        "y": 1360,
+        "wires": [
+            [
+                "8dc2f155200f897f"
+            ]
+        ]
+    },
+    {
+        "id": "7b6b02948788a73e",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3190,
+        "y": 1440,
+        "wires": [
+            [
+                "2d8c1ac8dea0284a"
+            ]
+        ]
+    },
+    {
+        "id": "8dc2f155200f897f",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3400,
+        "y": 1360,
+        "wires": [
+            [
+                "977fc72d918e5981"
+            ]
+        ]
+    },
+    {
+        "id": "2d8c1ac8dea0284a",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/errore.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3400,
+        "y": 1440,
+        "wires": [
+            [
+                "734e20fb2c6c2556"
+            ]
+        ]
+    },
+    {
+        "id": "977fc72d918e5981",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3620,
+        "y": 1360,
+        "wires": [
+            [
+                "af6474b64b2a0a91"
+            ]
+        ]
+    },
+    {
+        "id": "734e20fb2c6c2556",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3600,
+        "y": 1440,
+        "wires": [
+            [
+                "c229ecf0309bf8ee"
+            ]
+        ]
+    },
+    {
+        "id": "af6474b64b2a0a91",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Hai inserito un valore errato di indirizzo IP della crhomecast."
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3820,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f1461b653e5ce6cf",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "node",
+            "payload": {
+                "type": "serial",
+                "children": [
+                    {
+                        "type": "speak",
+                        "payload": {
+                            "type": "regular",
+                            "text": {
+                                "type": "str",
+                                "value": "Che numero Ã¨?"
+                            },
+                            "devices": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    },
+                    {
+                        "type": "skill",
+                        "payload": {
+                            "skill": {
+                                "type": "str",
+                                "value": "amzn1.ask.skill.89a70dd3-31b4-483e-9d7d-fc8761827996"
+                            },
+                            "device": {
+                                "type": "msg",
+                                "value": "nome"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "x": 3950,
+        "y": 1440,
+        "wires": [
+            [
+                "6f95601fd4050a10"
+            ]
+        ]
+    },
+    {
+        "id": "6f95601fd4050a10",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 130",
+        "func": "var id = 6\nglobal.set(\"id\", id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4140,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1611c61dbfee0be",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "prima domanda",
+        "links": [
+            "4d7a9a22c5533abc"
+        ],
+        "x": 25,
+        "y": 1680,
+        "wires": [
+            [
+                "768770b974e3c821"
+            ]
+        ]
+    },
+    {
+        "id": "768770b974e3c821",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "id",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 110,
+        "y": 1680,
+        "wires": [
+            [
+                "b9873773cb55b7ca"
+            ]
+        ]
+    },
+    {
+        "id": "e65fb6641c9d52e1",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "global",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 1680,
+        "wires": [
+            [
+                "a9557a417e9d21ed"
+            ]
+        ]
+    },
+    {
+        "id": "a9557a417e9d21ed",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "otto",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "otto",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 540,
+        "y": 1680,
+        "wires": [
+            [
+                "e12e958753e53f35"
+            ],
+            [
+                "b3ad31aa404c99af"
+            ],
+            [
+                "8c6bbcf955dfc438"
+            ]
+        ]
+    },
+    {
+        "id": "e12e958753e53f35",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 1640,
+        "wires": [
+            [
+                "57b7c9c1fc133a19"
+            ]
+        ]
+    },
+    {
+        "id": "8c6bbcf955dfc438",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 1720,
+        "wires": [
+            [
+                "c1026e182c8bd22a"
+            ]
+        ]
+    },
+    {
+        "id": "57b7c9c1fc133a19",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Complimenti, il test Ã¨ finito!"
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 900,
+        "y": 1640,
+        "wires": [
+            [
+                "48dacff501b4b4f3",
+                "5e97816c3f4745fc"
+            ]
+        ]
+    },
+    {
+        "id": "c1026e182c8bd22a",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Mi dispiace, il numero raffigurato era 8, test finito!"
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 900,
+        "y": 1720,
+        "wires": [
+            [
+                "3eed50257f36b236",
+                "5e97816c3f4745fc"
+            ]
+        ]
+    },
+    {
+        "id": "48dacff501b4b4f3",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "4",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1120,
+        "y": 1640,
+        "wires": [
+            [
+                "aef4e9c36ed924cf"
+            ]
+        ]
+    },
+    {
+        "id": "aef4e9c36ed924cf",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 131",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nvar c = global.get(\"primo\")\n\n\n\n    c ++\n    msg.payload = c\n\n    var sesto = global.set(\"primo\", c)\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 1640,
+        "wires": [
+            [
+                "7026903a7cd56dad"
+            ]
+        ]
+    },
+    {
+        "id": "7026903a7cd56dad",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1480,
+        "y": 1640,
+        "wires": [
+            [
+                "74af8b332bc48486"
+            ]
+        ]
+    },
+    {
+        "id": "74af8b332bc48486",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 132",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1890,
+        "y": 1640,
+        "wires": [
+            [
+                "a33808b53bde4673"
+            ]
+        ]
+    },
+    {
+        "id": "a33808b53bde4673",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2040,
+        "y": 1640,
+        "wires": [
+            [
+                "d0a4b25ca9746360"
+            ]
+        ]
+    },
+    {
+        "id": "d0a4b25ca9746360",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 133",
+        "func": "msg.payload = msg.payload.trim()\nmsg.file = msg.payload\nglobal.set(\"risultato\",msg.file)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2190,
+        "y": 1640,
+        "wires": [
+            [
+                "603baa0ceafe753c"
+            ]
+        ]
+    },
+    {
+        "id": "603baa0ceafe753c",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2360,
+        "y": 1640,
+        "wires": [
+            [
+                "4a834ea1a315ce0e"
+            ]
+        ]
+    },
+    {
+        "id": "683f1e1dea927ee2",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 135",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file = b + \"1\"\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2890,
+        "y": 1640,
+        "wires": [
+            [
+                "96d16c80b076b469"
+            ]
+        ]
+    },
+    {
+        "id": "96d16c80b076b469",
+        "type": "fs-ops-access",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "read": true,
+        "write": true,
+        "throwerror": false,
+        "x": 3080,
+        "y": 1640,
+        "wires": [
+            [
+                "43337c12b7bee980"
+            ],
+            [
+                "5860f6167baf2f80"
+            ]
+        ]
+    },
+    {
+        "id": "43337c12b7bee980",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "link out 8",
+        "mode": "link",
+        "links": [
+            "3819bad86ad9e1ed"
+        ],
+        "x": 3255,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "5860f6167baf2f80",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 136",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"risultato\")\nmsg.file = b + \"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3300,
+        "y": 1640,
+        "wires": [
+            [
+                "3adcc2a028c6df5b"
+            ]
+        ]
+    },
+    {
+        "id": "3adcc2a028c6df5b",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3490,
+        "y": 1640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3eed50257f36b236",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "4",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1120,
+        "y": 1720,
+        "wires": [
+            [
+                "5e564fbcf8fa387d"
+            ]
+        ]
+    },
+    {
+        "id": "5e564fbcf8fa387d",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 137",
+        "func": "var b = global.get(\"file\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1290,
+        "y": 1720,
+        "wires": [
+            [
+                "225c015e5b8aa139"
+            ]
+        ]
+    },
+    {
+        "id": "225c015e5b8aa139",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1460,
+        "y": 1720,
+        "wires": [
+            [
+                "cdeb88ae23b9279a"
+            ]
+        ]
+    },
+    {
+        "id": "cdeb88ae23b9279a",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 138",
+        "func": "msg.payload = msg.payload.trim()\nmsg.file = msg.payload\nglobal.set(\"risultato\",msg.file)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1610,
+        "y": 1720,
+        "wires": [
+            [
+                "ed456545a0a47fd4"
+            ]
+        ]
+    },
+    {
+        "id": "ed456545a0a47fd4",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1880,
+        "y": 1720,
+        "wires": [
+            [
+                "17bcd85dc4e93970"
+            ]
+        ]
+    },
+    {
+        "id": "22d74f7e1c9aca03",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 140",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file = b + \"1\"\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2450,
+        "y": 1720,
+        "wires": [
+            [
+                "5c098f7718f9611e"
+            ]
+        ]
+    },
+    {
+        "id": "5c098f7718f9611e",
+        "type": "fs-ops-access",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "read": true,
+        "write": true,
+        "throwerror": false,
+        "x": 2610,
+        "y": 1720,
+        "wires": [
+            [
+                "3833e98bbb85dc08"
+            ],
+            [
+                "e07d50ee713a8c4f"
+            ]
+        ]
+    },
+    {
+        "id": "3833e98bbb85dc08",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2760,
+        "y": 1720,
+        "wires": [
+            [
+                "a984200a62d5a5a4"
+            ]
+        ]
+    },
+    {
+        "id": "e07d50ee713a8c4f",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 141",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"risultato\")\nmsg.file = b + \"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2770,
+        "y": 1760,
+        "wires": [
+            [
+                "6ad4033ec3492f78"
+            ]
+        ]
+    },
+    {
+        "id": "a984200a62d5a5a4",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 142",
+        "func": "var filename = {}\nfilename = {\n    filename: msg.payload\n}\nvar b = global.get(\"file\")\nmsg.file=b+\"1\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2910,
+        "y": 1720,
+        "wires": [
+            [
+                "6c711426d919b8f6"
+            ]
+        ]
+    },
+    {
+        "id": "6ad4033ec3492f78",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2960,
+        "y": 1760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c711426d919b8f6",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 3060,
+        "y": 1720,
+        "wires": [
+            [
+                "82295ccaa078de7a"
+            ]
+        ]
+    },
+    {
+        "id": "82295ccaa078de7a",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 143",
+        "func": "msg.payload = msg.payload.trim()\nvar c = global.get(\"risultato\")\nmsg.file = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3210,
+        "y": 1720,
+        "wires": [
+            [
+                "3e7677e522cdf082"
+            ]
+        ]
+    },
+    {
+        "id": "3e7677e522cdf082",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "file",
+                "pt": "msg",
+                "to": "$number(file)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3380,
+        "y": 1720,
+        "wires": [
+            [
+                "06cba1deb25f340a"
+            ]
+        ]
+    },
+    {
+        "id": "06cba1deb25f340a",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "file",
+                "vt": "msg"
+            },
+            {
+                "t": "gt",
+                "v": "file",
+                "vt": "msg"
+            },
+            {
+                "t": "eq",
+                "v": "file",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 3550,
+        "y": 1720,
+        "wires": [
+            [
+                "3575739a45e29551"
+            ],
+            [
+                "c3d0ee7a155410a2"
+            ],
+            [
+                "07bff1e0206e31c2"
+            ]
+        ]
+    },
+    {
+        "id": "3575739a45e29551",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 144",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3690,
+        "y": 1680,
+        "wires": [
+            [
+                "24e444cd44f77e28"
+            ]
+        ]
+    },
+    {
+        "id": "c3d0ee7a155410a2",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 145",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3690,
+        "y": 1720,
+        "wires": [
+            [
+                "f1ef8f571830d0f1"
+            ]
+        ]
+    },
+    {
+        "id": "07bff1e0206e31c2",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 146",
+        "func": "var b = global.get(\"file_iniziale\")\nmsg.file=b\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3690,
+        "y": 1760,
+        "wires": [
+            [
+                "79cd444a0998ac58"
+            ]
+        ]
+    },
+    {
+        "id": "24e444cd44f77e28",
+        "type": "fs-ops-delete",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "x": 3850,
+        "y": 1680,
+        "wires": [
+            [
+                "67af541cc887ae4a"
+            ]
+        ]
+    },
+    {
+        "id": "f1ef8f571830d0f1",
+        "type": "fs-ops-delete",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "x": 3850,
+        "y": 1720,
+        "wires": [
+            [
+                "aae0dffc4468bcbb"
+            ]
+        ]
+    },
+    {
+        "id": "79cd444a0998ac58",
+        "type": "fs-ops-delete",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "path": "/root/ACCOUNT/",
+        "pathType": "str",
+        "filename": "file",
+        "filenameType": "msg",
+        "x": 3850,
+        "y": 1760,
+        "wires": [
+            [
+                "0e518746f339fa94"
+            ]
+        ]
+    },
+    {
+        "id": "67af541cc887ae4a",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 147",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"primo\")\nmsg.file=b+\"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4010,
+        "y": 1680,
+        "wires": [
+            [
+                "e52801f11b77b413"
+            ]
+        ]
+    },
+    {
+        "id": "aae0dffc4468bcbb",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 148",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"primo\")\nmsg.file=b+\"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4010,
+        "y": 1720,
+        "wires": [
+            [
+                "d90ae3574c768110"
+            ]
+        ]
+    },
+    {
+        "id": "0e518746f339fa94",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 149",
+        "func": "var b = global.get(\"file\")\nvar c = global.get(\"primo\")\nmsg.file=b+\"1\"\nmsg.payload = c\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4010,
+        "y": 1760,
+        "wires": [
+            [
+                "6aebfb1e069c3562"
+            ]
+        ]
+    },
+    {
+        "id": "e52801f11b77b413",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 4180,
+        "y": 1680,
+        "wires": [
+            [
+                "944b9d60b41fc061"
+            ]
+        ]
+    },
+    {
+        "id": "d90ae3574c768110",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 4180,
+        "y": 1720,
+        "wires": [
+            [
+                "3213351c3135e397"
+            ]
+        ]
+    },
+    {
+        "id": "6aebfb1e069c3562",
+        "type": "file",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "file",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 4180,
+        "y": 1760,
+        "wires": [
+            [
+                "1234a8744c632732"
+            ]
+        ]
+    },
+    {
+        "id": "17bcd85dc4e93970",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2060,
+        "y": 1720,
+        "wires": [
+            [
+                "1dd157e085518819"
+            ]
+        ]
+    },
+    {
+        "id": "7dc6cfd1368a3b5b",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "jsonata",
+                    "value": "\"Il tuo punteggio Ã¨ \" & $$.file & \" su 6\""
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 2720,
+        "y": 1640,
+        "wires": [
+            [
+                "683f1e1dea927ee2"
+            ]
+        ]
+    },
+    {
+        "id": "4a834ea1a315ce0e",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2520,
+        "y": 1640,
+        "wires": [
+            [
+                "7dc6cfd1368a3b5b",
+                "1043e5c324ed9662"
+            ]
+        ]
+    },
+    {
+        "id": "5e97816c3f4745fc",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1170,
+        "y": 1680,
+        "wires": [
+            [
+                "ca48649f9497b6e3"
+            ]
+        ]
+    },
+    {
+        "id": "ca48649f9497b6e3",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 150",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 1680,
+        "wires": [
+            [
+                "b9ed6425fba0d9f4"
+            ]
+        ]
+    },
+    {
+        "id": "b9ed6425fba0d9f4",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1600,
+        "y": 1680,
+        "wires": [
+            [
+                "19788c5f93bcef45"
+            ]
+        ]
+    },
+    {
+        "id": "19788c5f93bcef45",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://i.ibb.co/TL9jTfX/Immagine.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1840,
+        "y": 1680,
+        "wires": [
+            [
+                "ecbfcb337e77beb7"
+            ]
+        ]
+    },
+    {
+        "id": "ecbfcb337e77beb7",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2040,
+        "y": 1680,
+        "wires": [
+            [
+                "04f36c5234254f24"
+            ]
+        ]
+    },
+    {
+        "id": "04f36c5234254f24",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 2230,
+        "y": 1680,
+        "wires": [
+            [
+                "371eb4714bb342a0"
+            ]
+        ]
+    },
+    {
+        "id": "944b9d60b41fc061",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "link out 9",
+        "mode": "link",
+        "links": [
+            "66a732c7efd38653",
+            "a6ebfa37dd0cc7f4"
+        ],
+        "x": 4285,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "3213351c3135e397",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "link out 10",
+        "mode": "link",
+        "links": [
+            "2e1eea1c2baf12b3",
+            "e4ca6dc645342f94"
+        ],
+        "x": 4285,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "1234a8744c632732",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "link out 11",
+        "mode": "link",
+        "links": [
+            "985ce446e20a20d8",
+            "683edc2c95d46435"
+        ],
+        "x": 4285,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "b337ed086c77c3ac",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3880,
+        "y": 1960,
+        "wires": [
+            [
+                "58c81bf2d5e2bb59"
+            ]
+        ]
+    },
+    {
+        "id": "9e81553c50146d18",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3880,
+        "y": 1900,
+        "wires": [
+            [
+                "fcd3a81118baaa67"
+            ]
+        ]
+    },
+    {
+        "id": "72af6230a3c8ac6e",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3880,
+        "y": 1840,
+        "wires": [
+            [
+                "eab2c767a36ac135"
+            ]
+        ]
+    },
+    {
+        "id": "985ce446e20a20d8",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "link in 3",
+        "links": [
+            "9aaacbeb6e2a0201",
+            "1234a8744c632732",
+            "a7fa1c6a318a798c"
+        ],
+        "x": 3655,
+        "y": 1960,
+        "wires": [
+            [
+                "b337ed086c77c3ac"
+            ]
+        ]
+    },
+    {
+        "id": "2e1eea1c2baf12b3",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "link in 2",
+        "links": [
+            "f6431ca4860322cb",
+            "3213351c3135e397",
+            "8238aa67afb6b213"
+        ],
+        "x": 3655,
+        "y": 1900,
+        "wires": [
+            [
+                "9e81553c50146d18"
+            ]
+        ]
+    },
+    {
+        "id": "66a732c7efd38653",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "link in 1",
+        "links": [
+            "6765a84939a7fed6",
+            "944b9d60b41fc061",
+            "befe30f08bc4ab19"
+        ],
+        "x": 3655,
+        "y": 1840,
+        "wires": [
+            [
+                "72af6230a3c8ac6e"
+            ]
+        ]
+    },
+    {
+        "id": "0fa2bc939d75a649",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Complimenti, il tuo punteggio Ã¨ maggiore dell'ultima volta."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 4220,
+        "y": 1840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eab2c767a36ac135",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 4040,
+        "y": 1840,
+        "wires": [
+            [
+                "0fa2bc939d75a649"
+            ]
+        ]
+    },
+    {
+        "id": "88a9875cfaa31248",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Il tuo punteggio Ã¨ piÃ¹ basso dell'ultima volta."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 4220,
+        "y": 1900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fcd3a81118baaa67",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 4040,
+        "y": 1900,
+        "wires": [
+            [
+                "88a9875cfaa31248"
+            ]
+        ]
+    },
+    {
+        "id": "c3239ed15e49c7a8",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": " Il tuo punteggio Ã¨ lo stesso."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 4220,
+        "y": 1960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58c81bf2d5e2bb59",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 4040,
+        "y": 1960,
+        "wires": [
+            [
+                "c3239ed15e49c7a8"
+            ]
+        ]
+    },
+    {
+        "id": "da16c401ce68b5ac",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3760,
+        "y": 980,
+        "wires": [
+            [
+                "c8af27c5b844cb03"
+            ]
+        ]
+    },
+    {
+        "id": "641c23c2cc8441ba",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3760,
+        "y": 1200,
+        "wires": [
+            [
+                "29c335f077b4fe30"
+            ]
+        ]
+    },
+    {
+        "id": "c229ecf0309bf8ee",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3770,
+        "y": 1440,
+        "wires": [
+            [
+                "f1461b653e5ce6cf"
+            ]
+        ]
+    },
+    {
+        "id": "1043e5c324ed9662",
+        "type": "debug",
+        "z": "bd230b2d7e916b48",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2700,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "1dd157e085518819",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "jsonata",
+                    "value": "\"Il tuo punteggio Ã¨ \" & $$.file & \" su 6\""
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 2260,
+        "y": 1720,
+        "wires": [
+            [
+                "22d74f7e1c9aca03"
+            ]
+        ]
+    },
+    {
+        "id": "c6b5bff141067e5c",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 253,
+        "y": 721,
+        "wires": [
+            [
+                "7d5ddae915a7f3f4"
+            ]
+        ]
+    },
+    {
+        "id": "82931f0fb859dd9c",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1200,
+        "wires": [
+            [
+                "1a12fabea98bea26"
+            ]
+        ]
+    },
+    {
+        "id": "63ebacfa0facb1dd",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1440,
+        "wires": [
+            [
+                "98c2b7e2b94ba391"
+            ]
+        ]
+    },
+    {
+        "id": "b9873773cb55b7ca",
+        "type": "switch",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "property": "conversazione",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 230,
+        "y": 1680,
+        "wires": [
+            [
+                "e65fb6641c9d52e1"
+            ]
+        ]
+    },
+    {
+        "id": "960526cf9514465d",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 151",
+        "func": "var dispositivo = msg.payload.deviceSerialNumber\nglobal.set(\"dispositivo\", dispositivo)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5182ef9048d90c77",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1660,
+        "y": 460,
+        "wires": [
+            [
+                "730a443ee25d3adc"
+            ]
+        ]
+    },
+    {
+        "id": "730a443ee25d3adc",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Complimenti, prossimo numero."
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 1860,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "41df5d8eb7d5babc",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nome",
+                "pt": "msg",
+                "to": "dispositivo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 400,
+        "wires": [
+            [
+                "d58c5152dcb929a1"
+            ]
+        ]
+    },
+    {
+        "id": "d58c5152dcb929a1",
+        "type": "alexa-remote-routine",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "account": "6fec3559ef62b232",
+        "routineNode": {
+            "type": "speak",
+            "payload": {
+                "type": "regular",
+                "text": {
+                    "type": "str",
+                    "value": "Ok!"
+                },
+                "devices": {
+                    "type": "msg",
+                    "value": "nome"
+                }
+            }
+        },
+        "x": 620,
+        "y": 400,
+        "wires": [
+            [
+                "5de4fa70c80eb183",
+                "9eb762232075b60a"
+            ]
+        ]
+    },
+    {
+        "id": "3f8ef5ca51c35c3c",
+        "type": "debug",
+        "z": "bd230b2d7e916b48",
+        "name": "debug 24",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2760,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "748458efc4d2d55b",
+        "type": "debug",
+        "z": "bd230b2d7e916b48",
+        "name": "debug 25",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2140,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4a7379985fb7f1da",
+        "type": "debug",
+        "z": "bd230b2d7e916b48",
+        "name": "debug 26",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2080,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b72446a2bc993a21",
+        "type": "debug",
+        "z": "bd230b2d7e916b48",
+        "name": "debug 27",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2340,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "46db05369bdfc6a6",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 1430,
+        "y": 820,
+        "wires": [
+            [
+                "d98e95a1fd05ad74"
+            ]
+        ]
+    },
+    {
+        "id": "b2480fe3cc2aae23",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://i.ibb.co/TL9jTfX/Immagine.jpg",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1220,
+        "y": 820,
+        "wires": [
+            [
+                "46db05369bdfc6a6"
+            ]
+        ]
+    },
+    {
+        "id": "714dcd5f3bb60e86",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 820,
+        "wires": [
+            [
+                "b2480fe3cc2aae23"
+            ]
+        ]
+    },
+    {
+        "id": "3a4e540b1de0b732",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 152",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 820,
+        "wires": [
+            [
+                "714dcd5f3bb60e86"
+            ]
+        ]
+    },
+    {
+        "id": "8056ca0865ce557d",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 670,
+        "y": 820,
+        "wires": [
+            [
+                "3a4e540b1de0b732"
+            ]
+        ]
+    },
+    {
+        "id": "fcd9e60810e28225",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "stop",
+        "mode": "link",
+        "links": [
+            "b61a487c90c95450"
+        ],
+        "x": 645,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "6cd5e98a6f4f12b1",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "stop",
+        "mode": "link",
+        "links": [
+            "b61a487c90c95450"
+        ],
+        "x": 645,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "8a9326d7a88f9e92",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "stop",
+        "mode": "link",
+        "links": [
+            "b61a487c90c95450"
+        ],
+        "x": 645,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "5005caa6dd487618",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "stop",
+        "mode": "link",
+        "links": [
+            "b61a487c90c95450"
+        ],
+        "x": 645,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "b3ad31aa404c99af",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "stop",
+        "mode": "link",
+        "links": [
+            "b61a487c90c95450"
+        ],
+        "x": 655,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "b61a487c90c95450",
+        "type": "link in",
+        "z": "bd230b2d7e916b48",
+        "name": "link in 5",
+        "links": [
+            "5005caa6dd487618",
+            "6cd5e98a6f4f12b1",
+            "8a9326d7a88f9e92",
+            "b3ad31aa404c99af",
+            "fcd9e60810e28225",
+            "5aa3956b95704aac"
+        ],
+        "x": 515,
+        "y": 820,
+        "wires": [
+            [
+                "8056ca0865ce557d"
+            ]
+        ]
+    },
+    {
+        "id": "d98e95a1fd05ad74",
+        "type": "delay",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1620,
+        "y": 820,
+        "wires": [
+            [
+                "c2038ab1871d6e11"
+            ]
+        ]
+    },
+    {
+        "id": "c2038ab1871d6e11",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1890,
+        "y": 820,
+        "wires": [
+            [
+                "fc1dced2e36ad3b2"
+            ]
+        ]
+    },
+    {
+        "id": "fc1dced2e36ad3b2",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 153",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2080,
+        "y": 820,
+        "wires": [
+            [
+                "360964144661cbf4"
+            ]
+        ]
+    },
+    {
+        "id": "360964144661cbf4",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2240,
+        "y": 820,
+        "wires": [
+            [
+                "ba56384589f94ed4"
+            ]
+        ]
+    },
+    {
+        "id": "ba56384589f94ed4",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://www.2emmecomputer.it/upload/600_600/schermo-nero.gif",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2440,
+        "y": 820,
+        "wires": [
+            [
+                "78d3cc22c758f0c0"
+            ]
+        ]
+    },
+    {
+        "id": "78d3cc22c758f0c0",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 2650,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "371eb4714bb342a0",
+        "type": "file in",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "filename": "/root/chromecast.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 2410,
+        "y": 1680,
+        "wires": [
+            [
+                "b87a905c21ffc49a"
+            ]
+        ]
+    },
+    {
+        "id": "b87a905c21ffc49a",
+        "type": "function",
+        "z": "bd230b2d7e916b48",
+        "name": "function 154",
+        "func": "msg.payload = msg.payload.replace(/[\\r\\n]/g, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2600,
+        "y": 1680,
+        "wires": [
+            [
+                "a41dee0bf0cc223e"
+            ]
+        ]
+    },
+    {
+        "id": "a41dee0bf0cc223e",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"ip\":payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2760,
+        "y": 1680,
+        "wires": [
+            [
+                "24d72c2841f896ec"
+            ]
+        ]
+    },
+    {
+        "id": "24d72c2841f896ec",
+        "type": "change",
+        "z": "bd230b2d7e916b48",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ip",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://www.2emmecomputer.it/upload/600_600/schermo-nero.gif",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "image/jpg",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2960,
+        "y": 1680,
+        "wires": [
+            [
+                "aff9f9c9d9d349ed"
+            ]
+        ]
+    },
+    {
+        "id": "aff9f9c9d9d349ed",
+        "type": "cast-to-client",
+        "z": "bd230b2d7e916b48",
+        "name": "primo cast",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "en",
+        "ip": "",
+        "port": "",
+        "volume": "",
+        "x": 3170,
+        "y": 1680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5aa3956b95704aac",
+        "type": "link out",
+        "z": "bd230b2d7e916b48",
+        "name": "stop",
+        "mode": "link",
+        "links": [
+            "b61a487c90c95450"
+        ],
+        "x": 405,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "6fec3559ef62b232",
+        "type": "alexa-remote-account",
+        "name": "Prova",
+        "authMethod": "proxy",
+        "proxyOwnIp": "test.local",
+        "proxyPort": "3455",
+        "cookieFile": "/root/.node-red/account.cookie",
+        "refreshInterval": "3",
+        "alexaServiceHost": "alexa.amazon.it",
+        "amazonPage": "amazon.it",
+        "acceptLanguage": "it-IT",
+        "userAgent": "",
+        "useWsMqtt": "on",
+        "autoInit": "on"
+    },
+    {
+        "id": "460284767f342b79",
+        "type": "ui_group",
+        "name": "Inserisci IP crhomecast",
+        "tab": "1e32dfe70ba2b072",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "077688841874a022",
+        "type": "ui_group",
+        "name": "Inserisci il tuo nome",
+        "tab": "1e32dfe70ba2b072",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1e32dfe70ba2b072",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
